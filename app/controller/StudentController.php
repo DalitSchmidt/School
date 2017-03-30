@@ -4,18 +4,18 @@ use School\lib\SchemaException;
 use School\Model\Model;
 use School\lib\Schema;
 
-class UserController extends Controller {
-    private $schemaName = 'user';
+class StudentController extends UserController {
+    private $schemaName = 'student';
 
     public function __construct( Model $model ) {
         parent::__construct( $model );
     }
 
-    public function getUsers() {
+    public function getStudents() {
         return $this->model->getUsers();
     }
 
-    public function getUser() {
+    public function getStudent() {
         return $this->model->getUser();
     }
 
@@ -23,10 +23,8 @@ class UserController extends Controller {
      * @param array $args
      * @return mixed
      */
-    public function createUser( array $args ) {
+    public function createStudent( array $args ) {
         Schema::check( $this->schemaName, $args );
-        $args['password'] = md5( $args['password'] );
-
-        return $this->model->createUser( $args );
+        return $this->model->createStudent( $args );
     }
 }

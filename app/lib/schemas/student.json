@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "User",
+  "description": "A user",
+  "type": "object",
+  "properties": {
+    "username": {
+      "description": "The unique identifier for a user",
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 20
+    },
+    "email": {
+      "description": "The email of the user",
+      "type": "string",
+      "pattern": "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$"
+    },
+    "firstname": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 20
+    },
+    "lastname": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 20
+    },
+    "image": {
+
+    }
+  },
+  "required": ["username", "email", "firstname", "lastname"]
+}

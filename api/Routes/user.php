@@ -12,15 +12,20 @@ try {
 }
 
 $app->group("/user", function() use ( $app, $user_controller ) {
-    $app->get("", function() use ( $user_controller ) {
-        echo json_encode( $user_controller->getUsers() );
+    $app->get("", function( $request, $response, $next ) use ( $user_controller ) {
+        $users = $user_controller->getUsers();
+        if ( sizeof ( $users ) == 0 )
+            $response->withStatus( 204 );
+        else
+            echo json_encode( $users );
     });
 
     $app->post("", function( $request, $response, $next ) use ( $user_controller ) {
-        $data = json_decode(file_get_contents('php://input'), true);
+        $request_body = file_get_contents('php://input');
+        $data = json_decode($request_body, true);
 
         try {
-            echo $user_controller->createUser( $data );
+            var_dump( $user_controller->createUser( $data ) );
         } catch ( Throwable $e ) {
             echo $e->getMessage();
         }

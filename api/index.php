@@ -6,5 +6,6 @@ $app = new App();
 
 require_once 'Routes/user.php';
 require_once 'Routes/course.php';
+require_once 'Routes/login.php';
 
 $app->run();
