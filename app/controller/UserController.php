@@ -1,13 +1,13 @@
 <?php
 namespace School\Controller;
-use School\Model\UserModel;
+use School\Model\Model;
 use School\lib\Schema;
 
 class UserController extends Controller {
     private $schemaName = 'user';
 
-    public function __construct() {
-        $this->model = new UserModel();
+    public function __construct( Model $model ) {
+        parent::__construct( $model );
     }
 
     public function getUsers() {
@@ -15,11 +15,11 @@ class UserController extends Controller {
     }
 
     public function getUser() {
-        $this->model->getUser();
+        return $this->model->getUser();
     }
 
     public function createUser( array $args ) {
-        Schema::check($this->schemaName, $args);
+        Schema::check( $this->schemaName, $args );
         return $this->model->createUser( $args );
     }
 }

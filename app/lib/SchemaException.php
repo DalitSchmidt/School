@@ -5,7 +5,7 @@ class SchemaException extends \Exception {
     private $errors = [];
 
     public function __construct( array $errors ) {
-        parent::__construct("Scheme error", 0, null);
+        parent::__construct("Schema error", 0, null);
         $this->errors = $errors;
     }
 
