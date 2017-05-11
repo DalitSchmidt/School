@@ -11,20 +11,37 @@ class StudentController extends UserController {
         parent::__construct( $model );
     }
 
-    public function getStudents() {
-        return $this->model->getUsers();
+    public function show() {
+        return $this->model->getStudents();
     }
 
-    public function getStudent() {
-        return $this->model->getUser();
+    public function fetch( int $student_id ) {
+        return $this->model->getStudent( $student_id );
     }
 
     /**
      * @param array $args
      * @return mixed
      */
-    public function createStudent( array $args ) {
+    public function create( array $args ) {
         Schema::check( $this->schemaName, $args );
         return $this->model->createStudent( $args );
+    }
+
+    /**
+     * @param int $student_id
+     * @return bool
+     */
+    public function destroy( int $student_id ) : bool {
+        return $this->model->deleteStudent( $student_id );
+    }
+
+    /**
+     * @param int $student_id
+     * @param array $args
+     * @return mixed
+     */
+    public function update( int $student_id, array $args ) {
+        return $this->model->updateStudent( $student_id, $args );
     }
 }

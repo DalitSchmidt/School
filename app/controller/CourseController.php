@@ -10,15 +10,15 @@ class CourseController extends Controller {
         parent::__construct( $model );
     }
 
-    public function getCourses() {
+    public function show() {
         return $this->model->getCourses();
     }
 
-    public function getCourse( int $course_id ) {
+    public function fetch( int $course_id ) {
         return $this->model->getCourse( $course_id );
     }
 
-    public function createCourse( array $args ) {
+    public function create( array $args ) {
         Schema::check( $this->schemaName, $args );
         return $this->model->createCourse( $args );
     }
@@ -27,7 +27,16 @@ class CourseController extends Controller {
      * @param int $course_id
      * @return bool
      */
-    public function deleteCourse( int $course_id ) : bool {
+    public function destroy( int $course_id ) : bool {
         return $this->model->deleteCourse( $course_id );
+    }
+
+    /**
+     * @param int $course_id
+     * @param array $args
+     * @return mixed
+     */
+    public function update( int $course_id, array $args ) {
+        return $this->model->updateCourse( $course_id, $args );
     }
 }

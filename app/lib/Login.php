@@ -29,8 +29,11 @@ class Login {
     public static function login( string $username, string $password ) {
         $user_id = self::authenticate( $username, $password );
 
-        if ( $user_id )
+        if ( $user_id ) {
+            @session_start();
             $_SESSION['login_user_id'] = $user_id;
+            return true;
+        }
 
         return false;
     }
